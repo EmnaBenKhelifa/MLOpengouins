@@ -1,6 +1,7 @@
 import pandas as pd
+import pickle
 from src.pengouins.data import load_data, get_X_y,split_data, preprocess_data
-
+from src .pengouins.registry import save_model, load_model
 # Import data
 path ="./data/pingouins.csv"
 pingouins = load_data(path)
@@ -18,5 +19,7 @@ X_test_preprocessed = fitted_preprocessor.transform(X_test)
 
 print(f'PreProcesssor{X_train_preprocessed.shape}, {X_test_preprocessed.shape}')
 print(fitted_preprocessor)
+
+save_model(fitted_preprocessor, "./data/models/preprocessor.pkl")
 
 print(pd.DataFrame(X_train_preprocessed).head())
